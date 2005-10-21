@@ -1,0 +1,62 @@
+				PXDMCP
+
+	Copyright (c) 2005 Peter Eriksson <pen@lysator.liu.se>
+
+
+This is the README file for PXDMCP, an XDMCP standalone client that
+can be used to request an X11 Display Manager (XDM, GDM, CDE dtlogin etc)
+to start a new terminal session (normally used to bring up a login window)
+using the XDMCP protocol. This in effect does the same thing as an X
+server does when started with the "-query" argument but can be used in
+circumstances where that might be impractical.
+
+
+WARNING:
+
+  Do NOT simply run the client without directing it
+  to the right X server since it by default will try to utilize the
+  server pointed out by the DISPLAY variable which normally is your
+  current display - then you'll probably find that your desktop has
+  been taken over by a remote session or deadlock until you login from
+  another computer and till the xdmcp client!
+
+
+COMPILATION
+
+Edit the Makefile (probably only need to change the LIBS and XAUTH
+definitions) and then compile and build it with "make".
+
+
+USAGE
+
+The client can be used in various ways, but here's an example using
+the Xvnc server:
+
+  # Xvnc :50 -auth /var/tmp/authfile &
+  # xdmcp -k2 -v -D`uname -n`:50 -A/var/tmp/authfile xdm-server
+
+By default the client will check the DISPLAY and XAUTHORITY environment
+variables and use those values if you don't supply the -D and -A flags.
+
+If the DISPLAY variable is of the form ":DPY[.SCR]" then the client will
+compute a new DISPLAY variable by prepending the official hostname of
+the system before submitting this value to the remote XDMCP server.
+
+Please note that this might *not* be the correct value for your application!
+
+If you omit the XDM server argument then it by default will try to contact
+an XDM server on the local host.
+
+
+COMMAND LINE OPTIONS
+
+-h	  Print a short summary of valid switches
+-V	  Print the version
+-d[<n>]	  Enable debugging output
+-v[<n>]   Enable verbose output
+-D<d>     Display for the manager to contact
+-A<f>     X authentication file to update
+-a<p>     Path to the xauth program
+-k<n>     Keepalive mode (0 = disabled, 1 = send, 2 = send & monitor)
+
+

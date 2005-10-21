@@ -1,0 +1,8 @@
+* Implement INDIRECT and BROADCAST modes.
+
+* Use xauth generate to be able to manage remote X displays too.
+  (Needed to update the remote X servers authentication database)
+
+* Create an XDMCP server
+
+* Make the timeouts more configurable
