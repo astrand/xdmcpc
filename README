@@ -18,7 +18,7 @@ WARNING:
   server pointed out by the DISPLAY variable which normally is your
   current display - then you'll probably find that your desktop has
   been taken over by a remote session or deadlock until you login from
-  another computer and till the xdmcp client!
+  another computer and kill the xdmcp client!
 
 
 COMPILATION
