@@ -1,5 +1,5 @@
 /*
-** xdmcp.h - XDMCP protocol definitions and structures
+** xdmcp.c
 **
 ** Copyright (c) 2005 Peter Eriksson <pen@lysator.liu.se>
 */
