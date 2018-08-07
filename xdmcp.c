@@ -269,7 +269,7 @@ get_addr(char *str, unsigned long *ip, size_t * alen)
     if (hep && hep->h_addr_list && hep->h_addr_list[0]) {
 	tip = *(unsigned long *) (hep->h_addr_list[0]);
 	*ip = ntohl(tip);
-	*alen = sizeof(unsigned long);
+	*alen = hep->h_length;
 	return 1;
     }
 
@@ -676,6 +676,8 @@ main(int argc, char *argv[])
 	fprintf(stderr, "%s: invalid server hostname: %s\n", argv[0], dpyhost);
 	exit(1);
     }
+
+    addr = htonl(addr);
 
     if (debug > 1) {
 	fprintf(stderr, "DISPLAY=%s\n", display);
